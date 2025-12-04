@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(242, 234, 234);
+}
+
+header, footer {
+    background-color: rgb(226, 223, 223);
+    color: black;
+    text-align: center;
+    padding: 1em 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 15px;
+    padding: 15px;
+}
+
+.btn-primary {
+    background-color: #67798b;
+    border: none;
+    padding: 10px 20px;
+}
+.btn-primary:hover {
+    background-color: #2d3339;
+}
+
+.slider-container {
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 16 / 14;   /* proportion propre et responsive */
+    margin: 0 auto;
+    padding: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.slider-track {
+    display: flex;
+    flex-wrap: nowrap;
+    transition: transform 1s ease;
+}
+
+.slider-track img {
+    width: 100%;
+    height: 100%;        /* IMPORTANT : force le remplissage vertical */
+    object-fit: contain; /* l’image reste ENTIEREMENT visible */
+    padding: 10px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
