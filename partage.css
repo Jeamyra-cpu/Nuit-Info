@@ -1,0 +1,221 @@
+/* =================================================================
+   PALETTE DE COULEURS NIRD
+   ================================================================= */
+:root {
+    --nird-dark-blue: #1e3c72;      /* Bleu foncé (Header, Titres, Accents) */
+    --nird-medium-blue: #2a5298;    /* Bleu moyen */
+    --nird-light-blue: #47535f;     /* Fond de page très clair */
+    --nird-accent-red: #dc3545;     /* Rouge (Accentuation, Boutons) */
+    --nird-text-dark: #343a40;      /* Texte général */
+    --nird-background-white: #ffffff;
+}
+
+/* =================================================================
+   STYLES GÉNÉRAUX & STRUCTURE
+   ================================================================= */
+body {
+    background-color: var(--nird-light-blue);
+    color: var(--nird-text-dark);
+    font-family: 'Roboto', sans-serif;
+    padding-top: 60px;
+}
+
+.text-nird-dark-blue {
+    color: var(--nird-dark-blue) !important;
+}
+
+header {
+    background-color: var(--nird-dark-blue) !important;
+    border-bottom: 3px solid var(--nird-accent-red);
+    z-index: 1030;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--nird-accent-red) !important; 
+}
+
+/* =================================================================
+   OUTIL DE PERSONNALISATION
+   ================================================================= */
+.customization-tool {
+    background-color: var(--nird-background-white);
+    border-left: 5px solid var(--nird-medium-blue);
+    border-radius: 8px;
+}
+
+.form-control, .form-control-lg {
+    border-color: var(--nird-medium-blue);
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(42, 82, 152, 0.25);
+    border-color: var(--nird-medium-blue);
+}
+
+/* =================================================================
+   APERÇU DU DOCUMENT IMPRIMABLE (Zone Cadrée)
+   ================================================================= */
+.printable-area {
+    width: 210mm; /* Largeur A4 */
+    height: 297mm; /* Hauteur A4 */
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    position: relative;
+    overflow: hidden;
+    padding: 20mm;
+    
+    /* Image de fond visible SEULEMENT dans l'aperçu web */
+    background-image: url('https://source.unsplash.com/210x297/?blue-digital-pattern,eco-tech-background'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Effet d'ombre pour simuler la 3D / Feuille */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.print-header, .print-body, .print-footer {
+    position: relative;
+    z-index: 10;
+}
+
+.print-header {
+    text-align: center;
+    border-bottom: 3px solid var(--nird-accent-red);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.print-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.lead-print {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--nird-medium-blue);
+}
+
+.message-box {
+    background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent pour faire ressortir le texte */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px dashed var(--nird-medium-blue);
+    margin-top: 30px;
+}
+
+.message-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.cta-box {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.cta-qr-code {
+    width: 100px;
+    height: 100px;
+    background-color: #eee;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--nird-dark-blue);
+    font-size: 0.7rem;
+    color: #555;
+}
+
+.cta-text {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--nird-dark-blue);
+}
+
+.print-footer {
+    position: absolute;
+    bottom: 20mm;
+    left: 20mm;
+    right: 20mm;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding-top: 5px;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* =================================================================
+   BOUTON FLOTTANT (FAB)
+   ================================================================= */
+.print-fab {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    background-color: var(--nird-accent-red);
+    color: white;
+    z-index: 1000;
+    border: 3px solid white;
+    transition: background-color 0.3s, transform 0.3s ease;
+}
+
+.print-fab:hover {
+    background-color: #a02834;
+    transform: scale(1.1);
+}
+
+/* =================================================================
+   MEDIA PRINT (Règles spécifiques pour l'impression)
+   ================================================================= */
+@media print {
+    /* Cache tous les éléments non imprimables */
+    body > *:not(#printable-content) {
+        display: none !important;
+    }
+    
+    body {
+        background-color: #fff !important;
+    }
+    
+    #printable-content {
+        /* Redéfinit la zone imprimable pour l'A4 sans marges du navigateur */
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        
+        /* Image de fond EN NOIR ET BLANC pour l'impression */
+        background-size: cover !important;
+        background-position: center !important;
+        filter: grayscale(80%); /* Rend le fond moins consommateur d'encre */
+        
+        /* Force les couleurs de texte pour la lisibilité sur fond clair */
+        color: #000 !important;
+    }
+    
+    .print-header h1, .print-body, .print-footer {
+        color: #000 !important;
+    }
+    
+    .print-header h1 {
+        color: var(--nird-dark-blue) !important; /* Maintien de l'accent bleu foncé */
+    }
+    
+    .print-header {
+        border-bottom-color: var(--nird-accent-red) !important;
+    }
+
+    .message-box {
+        background-color: rgba(255, 255, 255, 1) !important; 
+        box-shadow: none !important;
+    }
+}

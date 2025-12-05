@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Défis Élève - NIRD</title>
+    
+    <link rel="stylesheet" href="defis.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <header data-aos="fade-down" class="bg-dark text-white p-3 shadow-lg position-relative">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="logo fs-4 fw-bold">NIRD - Ton Chemin de Résistant</div>
+            
+            <nav class="navbar navbar-expand-lg navbar-dark p-0">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="presentation.html"><i class="fas fa-home me-1"></i>Présentation</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="defis.html"><i class="fas fa-gamepad me-1"></i>Défis</a></li>
+                        <li class="nav-item"><a class="nav-link" href="action.html"><i class="fas fa-tasks me-1"></i>Actions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="impact.html"><i class="fas fa-chart-line me-1"></i>Impact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="partage.html"><i class="fas fa-share me-1"></i>Partage</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section class="intro text-center mb-5" data-aos="fade-up">
+            <h1 class="display-5 fw-bold text-primary">🗺️ Choisis ta zone et relève le défi !</h1>
+            <p class="lead text-muted">Chaque lieu de ton lycée cache un mini-défi NIRD. Clique sur une zone et montre que tu es un élève résistant numérique !</p>
+            
+            <div id="progress-container" class="mt-4 p-3 bg-light rounded shadow-sm">
+                <h2 class="h5 mb-3 text-secondary">Ton Parcours NIRD</h2>
+                <div class="progress" style="height: 30px;">
+                    <div id="nird-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                </div>
+                <p id="total-score-text" class="mt-2 fw-bold text-dark">Score Total : 0 points</p>
+            </div>
+            </section>
+
+        <section class="zones row g-4 justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="zone card text-center p-3 shadow-sm border-0" id="salle-info" data-title="Salle informatique" data-defi="Quiz: Pourquoi Linux peut sauver ton vieux PC ?">
+                    <span class="fs-1">🖥️</span>
+                    <h5 class="card-title mt-2">Salle informatique</h5>
+                    <p class="zone-status badge bg-secondary">À Découvrir</p>
+                </div>
+            </div>
+            
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="zone card text-center p-3 shadow-sm border-0" id="atelier-recond" data-title="Atelier de reconditionnement" data-defi="Mini-jeu: Sobriété ou Gaspillage ?">
+                    <span class="fs-1">🛠️</span>
+                    <h5 class="card-title mt-2">Atelier de reconditionnement</h5>
+                    <p class="zone-status badge bg-secondary">À Découvrir</p>
+                </div>
+            </div>
+            
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="zone card text-center p-3 shadow-sm border-0" id="bureau-reseau" data-title="Bureau du réseau" data-defi="Simulateur: Réparer ou Acheter ?">
+                    <span class="fs-1">🌐</span>
+                    <h5 class="card-title mt-2">Bureau du réseau</h5>
+                    <p class="zone-status badge bg-secondary">À Découvrir</p>
+                </div>
+            </div>
+            
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="zone card text-center p-3 shadow-sm border-0" id="salle-profs" data-title="Salle des profs" data-defi="Quiz: Comment sensibiliser tes camarades ?">
+                    <span class="fs-1">👩‍🏫</span>
+                    <h5 class="card-title mt-2">Salle des profs</h5>
+                    <p class="zone-status badge bg-secondary">À Découvrir</p>
+                </div>
+            </div>
+            
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="zone card text-center p-3 shadow-sm border-0" id="cdi" data-title="CDI" data-defi="Challenge lecture: Trouve des ressources libres !">
+                    <span class="fs-1">📚</span>
+                    <h5 class="card-title mt-2">CDI</h5>
+                    <p class="zone-status badge bg-secondary">À Découvrir</p>
+                </div>
+            </div>
+            
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="zone card text-center p-3 shadow-sm border-0" id="bureau-dir" data-title="Bureau de la direction" data-defi="Mini-jeu: Proposer un plan NIRD pour ton lycée">
+                    <span class="fs-1">🏛️</span>
+                    <h5 class="card-title mt-2">Bureau de la direction</h5>
+                    <p class="zone-status badge bg-secondary">À Découvrir</p>
+                </div>
+            </div>
+            
+        </section>
+    </main>
+    
+    <div class="modal fade" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-defi" class="lead"></p>
+                    <div id="game-content" class="mt-3"></div>
+                    <div id="game-result" class="mt-3 text-center"></div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button id="start-defi" class="btn btn-primary btn-lg w-100">Commencer le défi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Définition des défis par zone
+const challenges = {
+    'salle-info': {
+        title: "Quiz : Linux et la Résistance Matérielle",
+        pointsPerQuestion: 15,
+        questions: [
+            {
+                text: "Question 1 : Quel est l'avantage principal de Linux pour prolonger la vie d'un vieux PC ?",
+                answers: [
+                    { text: "Il permet de jouer aux derniers jeux vidéo.", isCorrect: false, feedback: "Faux. Bien que certains jeux soient compatibles, son avantage est sa légèreté." },
+                    { text: "Il est très léger et utilise peu de RAM.", isCorrect: true, feedback: "C'est exact ! Sa **légèreté** réduit la charge sur le matériel ancien. (+15 points)" },
+                    { text: "Il a des mises à jour automatiques très lourdes.", isCorrect: false, feedback: "Faux. Les mises à jour Linux sont souvent plus fines et mieux gérées." }
+                ]
+            },
+            {
+                text: "Question 2 : Pourquoi parle-t-on de 'Libre' pour le Logiciel Libre ?",
+                answers: [
+                    { text: "Il est toujours gratuit à l'achat.", isCorrect: false, feedback: "Faux. Il est souvent gratuit, mais 'Libre' fait référence à la **liberté d'utilisation et de modification**." },
+                    { text: "Il garantit les quatre libertés fondamentales : utiliser, étudier, modifier, partager.", isCorrect: true, feedback: "Bravo ! Les **quatre libertés** sont le fondement du Logiciel Libre. (+15 points)" }
+                ]
+            }
+        ]
+    },
+    'atelier-recond': {
+        title: "Quiz : Reconditionnement et Sobriété",
+        pointsPerQuestion: 15,
+        questions: [
+            {
+                text: "Question 1 : Quel est l'impact principal du reconditionnement d'un smartphone ?",
+                answers: [
+                    { text: "Il double la vitesse de l'appareil.", isCorrect: false, feedback: "Faux. Il ne change pas les performances de base." },
+                    { text: "Il réduit considérablement l'extraction de **matières premières**.", isCorrect: true, feedback: "Correct ! Le plus gros impact est d'éviter l'extraction minière pour un neuf. (+15 points)" },
+                    { text: "Il consomme plus d'énergie qu'un appareil neuf.", isCorrect: false, feedback: "Faux. L'impact carbone de la fabrication est bien supérieur à celui de l'utilisation." }
+                ]
+            },
+            {
+                text: "Question 2 : Lequel de ces gestes contribue le plus à la Sobriété Numérique ?",
+                answers: [
+                    { text: "Désactiver les notifications non essentielles.", isCorrect: true, feedback: "Exact ! **Réduire les sollicitations et les données échangées** est l'essence de la Sobriété. (+15 points)" },
+                    { text: "Utiliser un antivirus payant.", isCorrect: false, feedback: "Faux. Cela n'est pas directement lié à la sobriété mais à la sécurité." }
+                ]
+            }
+        ]
+    },
+    'bureau-reseau': {
+        title: "Simulateur : Réparer ou Remplacer ?",
+        pointsPerQuestion: 15,
+        questions: [
+            {
+                text: "Question 1 : Tu as un PC portable de 6 ans, lent mais fonctionnel. Quel est le meilleur investissement NIRD ?",
+                answers: [
+                    { text: "Acheter un tout nouveau modèle 'gamer'.", isCorrect: false, feedback: "Faux. Très mauvais choix NIRD, impact maximal." },
+                    { text: "Remplacer le disque dur par un **SSD** (mémoire rapide).", isCorrect: true, feedback: "Excellent ! Une simple mise à niveau matériel prolonge souvent la vie utile. (+15 points)" }
+                ]
+            },
+            {
+                text: "Question 2 : La durée de vie moyenne d'un smartphone est de 2 ans. Si tu le gardes 4 ans, quel est ton gain environnemental ?",
+                answers: [
+                    { text: "Tu divises par deux l'impact de sa fabrication.", isCorrect: true, feedback: "C'est ça ! La fabrication est la phase la plus coûteuse en ressources. (+15 points)" },
+                    { text: "Tu ne fais aucune différence.", isCorrect: false, feedback: "Faux. C'est le geste le plus impactant !" }
+                ]
+            }
+        ]
+    },
+    'salle-profs': {
+        title: "Quiz : Sensibilisation et Pédagogie",
+        pointsPerQuestion: 15,
+        questions: [
+            {
+                text: "Question 1 : Pour sensibiliser les élèves, il est préférable de mettre l'accent sur :",
+                answers: [
+                    { text: "La culpabilisation face à l'urgence climatique.", isCorrect: false, feedback: "Faux. La culpabilisation est souvent contre-productive." },
+                    { text: "**Les actions concrètes et les avantages personnels** (PC plus rapide, économies).", isCorrect: true, feedback: "Exact ! Mettre en avant le bénéfice utilisateur est très motivant. (+15 points)" }
+                ]
+            },
+            {
+                text: "Question 2 : Quel outil privilégier pour créer un support de sensibilisation NIRD (affiches, diapo) ?",
+                answers: [
+                    { text: "Un outil en ligne qui nécessite une connexion constante et un compte.", isCorrect: false, feedback: "Faux. Ce n'est pas un choix très sobre." },
+                    { text: "**Un logiciel local et libre** (comme GIMP, Krita ou LibreOffice).", isCorrect: true, feedback: "Bravo ! Donner l'exemple en utilisant des outils libres. (+15 points)" }
+                ]
+            }
+        ]
+    },
+    'cdi': {
+        title: "Challenge : Les Ressources Libres",
+        pointsPerQuestion: 15,
+        questions: [
+            {
+                text: "Question 1 : Quel est l'intérêt d'utiliser un moteur de recherche alternatif à Google (ex : Qwant, DuckDuckGo) ?",
+                answers: [
+                    { text: "Ils affichent plus de publicités.", isCorrect: false, feedback: "Faux. C'est souvent l'inverse." },
+                    { text: "Ils **respectent la vie privée** et consomment moins de données pour le ciblage.", isCorrect: true, feedback: "C'est exact ! Un geste fort pour la résistance numérique. (+15 points)" }
+                ]
+            },
+            {
+                text: "Question 2 : Les images, musiques ou textes sous licence **Creative Commons** permettent :",
+                answers: [
+                    { text: "De les revendre sans permission.", isCorrect: false, feedback: "Faux. La plupart des licences CC l'interdisent (sauf mention spécifique)." },
+                    { text: "De les **réutiliser et partager légalement** pour un projet éducatif.", isCorrect: true, feedback: "Bravo ! Ils sont la source du savoir libre. (+15 points)" }
+                ]
+            }
+        ]
+    },
+    'bureau-dir': {
+        title: "Mini-jeu : Proposer un Plan NIRD",
+        pointsPerQuestion: 20, 
+        questions: [
+            {
+                text: "Question 1 : La proposition NIRD la plus efficace à présenter à la direction serait :",
+                answers: [
+                    { text: "Remplacer toutes les imprimantes par des modèles plus rapides.", isCorrect: false, feedback: "Faux. Cela augmente le volume d'impression." },
+                    { text: "Mettre en place un **Audit Numérique** pour identifier les équipements à reconditionner.", isCorrect: true, feedback: "C'est la base ! Savoir où agir est essentiel. (+20 points)" }
+                ]
+            },
+            {
+                text: "Question 2 : Le concept de 'Cloud Souverain' (hébergement des données en France/Europe) permet de :",
+                answers: [
+                    { text: "Faire des économies d'électricité.", isCorrect: false, feedback: "Faux. L'impact environnemental est similaire." },
+                    { text: "Assurer la **protection des données** face aux lois étrangères (ex : États-Unis).", isCorrect: true, feedback: "Excellent ! C'est un pilier de la résistance géopolitique numérique. (+20 points)" }
+                ]
+            }
+        ]
+    }
+};
+
+// =================================================================
+// 2. Éléments DOM et Variables d'État Globales
+// =================================================================
+
+const elements = {
+    // Initialise la modale Bootstrap
+    quizModal: new bootstrap.Modal(document.getElementById('quizModal')), 
+    modalTitle: document.getElementById('modal-title'),
+    modalDefi: document.getElementById('modal-defi'),
+    gameContent: document.getElementById('game-content'),
+    startDefiBtn: document.getElementById('start-defi'),
+    gameResult: document.getElementById('game-result'),
+    zones: document.querySelectorAll('.zone'),
+    progressBar: document.getElementById('nird-progress-bar'),
+    totalScoreText: document.getElementById('total-score-text')
+};
+
+let gameState = {
+    currentZoneId: null,
+    currentQuestionIndex: 0,
+    scores: JSON.parse(localStorage.getItem('nird-scores')) || {}, 
+    totalProgress: 0,
+    maxPossibleScore: Object.values(challenges).reduce((sum, zone) => sum + (zone.questions.length * zone.pointsPerQuestion), 0)
+};
+
+// =================================================================
+// 3. Fonctions d'Initialisation et de Mise à Jour du Score
+// =================================================================
+
+function calculateTotalProgress() {
+    gameState.totalProgress = Object.values(gameState.scores).reduce((a, b) => a + b, 0);
+    localStorage.setItem('nird-scores', JSON.stringify(gameState.scores));
+}
+
+function updateTotalScoreDisplay() {
+    calculateTotalProgress();
+    
+    // Mise à jour du texte du score total
+    elements.totalScoreText.textContent = `Score Total : ${gameState.totalProgress} points / ${gameState.maxPossibleScore} points`;
+
+    // Mise à jour de la barre de progression
+    const progressPercentage = (gameState.totalProgress / gameState.maxPossibleScore) * 100;
+    
+    elements.progressBar.style.width = `${progressPercentage.toFixed(0)}%`;
+    elements.progressBar.setAttribute('aria-valuenow', progressPercentage.toFixed(0));
+    elements.progressBar.textContent = `${progressPercentage.toFixed(0)}% de Résistance Numérique`;
+    
+    // Mettre à jour l'état de chaque zone
+    elements.zones.forEach(zone => {
+        const zoneScore = gameState.scores[zone.id] || 0;
+        const maxZoneScore = challenges[zone.id].questions.length * challenges[zone.id].pointsPerQuestion;
+        const statusBadge = zone.querySelector('.zone-status');
+
+        statusBadge.classList.remove('bg-secondary', 'bg-warning', 'bg-success');
+        
+        if (zoneScore === 0) {
+            statusBadge.textContent = 'À Découvrir';
+            statusBadge.classList.add('bg-secondary');
+        } else if (zoneScore < maxZoneScore) {
+            statusBadge.textContent = `En Cours (${zoneScore} pts)`;
+            statusBadge.classList.add('bg-warning');
+        } else {
+            statusBadge.textContent = `Complété (${zoneScore} pts)`;
+            statusBadge.classList.add('bg-success');
+        }
+    });
+}
+
+// Initialise l'affichage au chargement de la page
+document.addEventListener('DOMContentLoaded', updateTotalScoreDisplay);
+
+
+// =================================================================
+// 4. Gestion des Événements (Clics sur les zones)
+// =================================================================
+
+elements.zones.forEach(zone => {
+    zone.addEventListener('click', () => {
+        gameState.currentZoneId = zone.id;
+        const challengeData = challenges[zone.id];
+        const zoneScore = gameState.scores[zone.id] || 0;
+
+        elements.modalTitle.textContent = zone.dataset.title;
+        elements.modalDefi.textContent = challengeData.title;
+        
+        elements.gameContent.innerHTML = '';
+        elements.gameResult.innerHTML = '';
+        
+        // Affichage de l'état du défi dans le titre de la modale
+        if (zoneScore > 0) {
+            elements.modalDefi.innerHTML += ` <span class="badge bg-info text-dark">Score actuel: ${zoneScore} pts</span>`;
+            elements.startDefiBtn.textContent = 'Recommencer le défi';
+        } else {
+            elements.startDefiBtn.textContent = 'Commencer le défi';
+        }
+
+        elements.startDefiBtn.style.display = 'block';
+        elements.quizModal.show(); // Afficher la modale Bootstrap
+    });
+});
+
+elements.startDefiBtn.addEventListener('click', () => {
+    // Réinitialise le score de la zone au début d'un nouveau quiz
+    gameState.scores[gameState.currentZoneId] = 0;
+    gameState.currentQuestionIndex = 0; 
+    launchQuiz();
+});
+
+
+// =================================================================
+// 5. Logique du Quiz
+// =================================================================
+
+function launchQuiz() {
+    elements.startDefiBtn.style.display = 'none';
+    elements.gameResult.innerHTML = ''; 
+    displayQuestion();
+}
+
+function displayQuestion() {
+    const quiz = challenges[gameState.currentZoneId];
+    
+    if (gameState.currentQuestionIndex < quiz.questions.length) {
+        const question = quiz.questions[gameState.currentQuestionIndex];
+        
+        // Création des boutons de réponse
+        let answersHtml = question.answers.map((answer, index) => `
+            <button class="quiz-answer-btn" data-index="${index}">${answer.text}</button>
+        `).join('');
+        
+        elements.gameContent.innerHTML = `
+            <h3>Question ${gameState.currentQuestionIndex + 1}/${quiz.questions.length} : ${question.text}</h3>
+            <div id="answers-container" style="margin-top: 15px;">${answersHtml}</div>
+            <p class="mt-3" style="font-size: 0.9em;">Score actuel pour cette zone : **${gameState.scores[gameState.currentZoneId] || 0} pts**</p>
+        `;
+
+        // Ajout des écouteurs d'événements aux nouveaux boutons
+        document.querySelectorAll('.quiz-answer-btn').forEach(button => {
+            button.addEventListener('click', handleAnswerClick);
+        });
+
+    } else {
+        // Fin du quiz
+        quizFinished(quiz.questions.length * quiz.pointsPerQuestion);
+    }
+}
+
+function handleAnswerClick(e) {
+    const selectedAnswerIndex = parseInt(e.target.dataset.index);
+    const quiz = challenges[gameState.currentZoneId];
+    const question = quiz.questions[gameState.currentQuestionIndex];
+    const selectedAnswer = question.answers[selectedAnswerIndex];
+    const scoreToAdd = quiz.pointsPerQuestion;
+
+    // Désactiver tous les boutons de réponse
+    document.querySelectorAll('.quiz-answer-btn').forEach(btn => btn.disabled = true);
+    
+    // Feedback
+    let feedbackColor = selectedAnswer.isCorrect ? '#28a745' : '#dc3545';
+    let feedbackText = selectedAnswer.isCorrect ? `<i class="fas fa-check-circle"></i> ${selectedAnswer.feedback}` : `<i class="fas fa-times-circle"></i> ${selectedAnswer.feedback}`;
+    
+    elements.gameResult.innerHTML = `<p style="color: ${feedbackColor}; font-weight: bold; margin-top: 10px;">${feedbackText}</p>`;
+
+    // Mise en évidence et score
+    if (selectedAnswer.isCorrect) {
+        e.target.style.backgroundColor = '#28a745'; // Vert
+        e.target.style.color = 'white';
+        gameState.scores[gameState.currentZoneId] += scoreToAdd;
+    } else {
+        e.target.style.backgroundColor = '#dc3545'; // Rouge
+        e.target.style.color = 'white';
+        // Afficher la bonne réponse
+        const correctIndex = question.answers.findIndex(a => a.isCorrect);
+        const correctBtn = document.querySelector(`.quiz-answer-btn[data-index="${correctIndex}"]`);
+        if (correctBtn) {
+             correctBtn.style.border = '3px solid #28a745';
+        }
+    }
+
+    // Afficher le bouton "Question Suivante" ou "Terminer"
+    setTimeout(() => {
+        // Mise à jour immédiate du score affiché dans la modale
+        elements.gameContent.querySelector('p').innerHTML = `Score actuel pour cette zone : **${gameState.scores[gameState.currentZoneId]} pts**`;
+        
+        const nextBtn = document.createElement('button');
+        nextBtn.id = 'next-question-btn';
+        nextBtn.className = 'btn btn-warning mt-3';
+        nextBtn.textContent = (gameState.currentQuestionIndex < quiz.questions.length - 1) ? 'Question suivante >>' : 'Voir mon score final';
+        
+        nextBtn.onclick = () => {
+            gameState.currentQuestionIndex++;
+            displayQuestion();
+        };
+        elements.gameResult.appendChild(nextBtn);
+    }, 1500); 
+}
+
+function quizFinished(maxScore) {
+    const finalScore = gameState.scores[gameState.currentZoneId];
+    const successRate = Math.round((finalScore / maxScore) * 100);
+
+    let message = '';
+    if (successRate >= 90) {
+        message = 'Félicitations ! Tu es un **expert** de la résistance numérique !';
+    } else if (successRate >= 50) {
+        message = 'Bien joué ! Tu as de bonnes bases, continue à explorer les concepts NIRD.';
+    } else {
+        message = 'Un bon début ! N\'hésite pas à refaire le quiz pour consolider tes connaissances.';
+    }
+
+    elements.gameContent.innerHTML = `
+        <h2>Défi terminé ! 🎉</h2>
+        <p>Ton score pour la **${elements.modalTitle.textContent}** est de **${finalScore} / ${maxScore} points** (${successRate}% de réussite).</p>
+        <p style="font-weight: bold;">${message}</p>
+    `;
+    elements.gameResult.innerHTML = '';
+    
+    // Affichage du bouton Terminer/Rejouer
+    elements.startDefiBtn.style.display = 'block';
+    elements.startDefiBtn.textContent = 'Terminer / Rejouer le défi';
+    
+    elements.quizModal.hide(); // Ferme la modale
+    updateTotalScoreDisplay(); // Met à jour l'interface principale
+}
+
+// Initialisation de AOS (maintient l'effet d'animation)
+AOS.init({
+    duration: 800,
+    once: true
+});
+    </script>
+
+</body>
+</html>

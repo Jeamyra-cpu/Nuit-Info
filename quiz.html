@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz NIRD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+
+<header>
+    <h1>🧠 Évaluer mes Notions NIRD</h1>
+    <p>Testez votre compréhension des meilleures pratiques en matière de migration et de sécurité.</p>
+</header>
+
+<main class="main-content">
+    
+    <section class="section" id="quiz-migration-section">
+        <h2>Quiz 1 : Migrer sans tout casser</h2>
+        <div class="quiz" id="quiz-migration">
+            <p class="quiz-question">
+                Votre établissement doit migrer 80 postes de Windows 10 vers Windows 11 ou un autre OS (Linux).
+                Quelle est la première étape responsable ?
+            </p>
+            <div class="quiz-options">
+                <label><input type="radio" name="q1" value="A"> A. Planifier une nuit de migration et basculer tous les postes d’un coup.</label>
+                <label><input type="radio" name="q1" value="B"> B. Sauvegarder les données critiques et tester sur un petit groupe de machines pilotes.</label>
+                <label><input type="radio" name="q1" value="C"> C. Ne migrer que les postes neufs et laisser les anciens tels quels.</label>
+            </div>
+            <button class="btn" type="button" onclick="corrigerQuizMigration()">Valider ma réponse</button>
+            <div id="quiz-migration-feedback" class="feedback" style="display:none;"></div>
+        </div>
+    </section>
+
+    <hr>
+    
+    <section class="section" id="quiz-sauvegarde-section">
+        <h2>Quiz 2 : Un poste critique en panne</h2>
+        <div class="quiz" id="quiz-sauvegarde">
+            <p class="quiz-question">
+                Un ordinateur de direction tombe en panne le jour d’un conseil important, avec des documents non envoyés.
+                Quelle pratique aurait le mieux limité l’impact de cet incident ?
+            </p>
+            <div class="quiz-options">
+                <label><input type="radio" name="q2" value="A"> A. Utiliser uniquement des clés USB pour stocker les documents.</label>
+                <label><input type="radio" name="q2" value="B"> B. Mettre en place des sauvegardes automatiques sur un serveur ou un stockage partagé.</label>
+                <label><input type="radio" name="q2" value="C"> C. Ne jamais éteindre l’ordinateur pour éviter les problèmes.</label>
+            </div>
+            <button class="btn" type="button" onclick="corrigerQuizSauvegarde()">Valider ma réponse</button>
+            <div id="quiz-sauvegarde-feedback" class="feedback" style="display:none;"></div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    // --- Logique du Quiz Migration ---
+    function corrigerQuizMigration() {
+        const radios = document.querySelectorAll('input[name="q1"]');
+        let valeur = null;
+        radios.forEach(r => { if (r.checked) valeur = r.value; });
+        const feedback = document.getElementById('quiz-migration-feedback');
+        
+        if (!valeur) {
+            feedback.textContent = "Choisissez d’abord une réponse.";
+            feedback.className = "feedback ko";
+        } else if (valeur === "B") {
+            feedback.textContent = "Bravo ! C’est la bonne démarche : sauvegarder et tester sur un petit groupe avant de migrer tout le parc (principe de précaution et de maîtrise progressive du NIRD).";
+            feedback.className = "feedback ok";
+        } else {
+            feedback.textContent = "Ce n’est pas l’option la plus responsable. Une migration maîtrisée (approche NIRD) commence par des sauvegardes et des tests sur un échantillon de postes.";
+            feedback.className = "feedback ko";
+        }
+        feedback.style.display = "block";
+    }
+
+    // --- Logique du Quiz Sauvegarde ---
+    function corrigerQuizSauvegarde() {
+        const radios = document.querySelectorAll('input[name="q2"]');
+        let valeur = null;
+        radios.forEach(r => { if (r.checked) valeur = r.value; });
+        const feedback = document.getElementById('quiz-sauvegarde-feedback');
+        
+        if (!valeur) {
+            feedback.textContent = "Choisissez d’abord une réponse.";
+            feedback.className = "feedback ko";
+        } else if (valeur === "B") {
+            feedback.textContent = "Exact ! Des sauvegardes automatiques centralisées (sur serveur sécurisé ou stockage partagé) limitent fortement l’impact d’une panne ou d’un vol.";
+            feedback.className = "feedback ok";
+        } else {
+            feedback.textContent = "Ce choix laisse l’établissement très exposé. Un plan de sauvegarde régulier est la meilleure protection contre les pertes de données (principe de Durabilité et Responsabilité).";
+            feedback.className = "feedback ko";
+        }
+        feedback.style.display = "block";
+    }
+</script>
+</body>
+<footer>
+    <a href="institutions.html" class="link-secondary">Retour à l'Espace Institutions</a>
+    <p class="mt-3">&copy; 2025 Le Village Numérique Libre et Durable. Tous droits réservés.</p>
+</footer>
+</html>

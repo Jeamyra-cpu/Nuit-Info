@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Inscription</title>
+
+  <!-- Police moderne -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles1.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <!-- Gauche : Formulaire -->
+      <div class="panel panel-form">
+        <header class="brand">
+          <h1>Créer un compte</h1>
+          <p class="subtitle">Rejoins la plateforme — simple et sécurisé</p>
+        </header>
+
+        <form id="registerForm" class="form" autocomplete="off" novalidate>
+          <div class="row">
+            <div class="field">
+              <label for="nom">Nom</label>
+              <input id="nom" name="nom" type="text" required placeholder="Ex: Dupont" />
+            </div>
+
+            <div class="field">
+              <label for="prenom">Prénom</label>
+              <input id="prenom" name="prenom" type="text" required placeholder="Ex: Alice" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="email">Adresse e-mail</label>
+            <input id="email" name="email" type="email" required placeholder="exemple@domaine.com" />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="password">Mot de passe</label>
+              <div class="password-wrapper">
+                <input id="password" name="password" type="password" minlength="8" required placeholder="8 caractères minimum" />
+                <button type="button" class="toggle-pass" aria-label="Afficher le mot de passe">👁️</button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="confirm">Confirmer le mot de passe</label>
+              <input id="confirm" name="confirm" type="password" minlength="8" required placeholder="Retapez le mot de passe" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="profil">Profil</label>
+            <select id="profil" name="profil" required>
+              <option value="" disabled selected>Choisir le profil</option>
+              <option value="eleve">Élève</option>
+              <option value="enseignant">Enseignant</option>
+              <option value="parents">Parents</option>
+              <option value="institution">Institution</option>
+            </select>
+          </div>
+
+          <div class="actions">
+           <button type="button" id="nextPageBtn" class="btn-primary" >Retour</button>
+            <button type="submit" class="btn-primary">S'inscrire</button>
+            <button type="reset" class="btn-ghost">Effacer</button>
+          </div>
+
+          <p class="small">En cliquant sur S'inscrire, vous acceptez les conditions d'utilisation.</p>
+
+          <div id="formMessage" class="form-message" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <!-- Droite : Panneau décoratif -->
+      <aside class="panel panel-art">
+        <div class="art-content">
+          <div class="art-shapes">
+            <!-- formes CSS décoratives -->
+            <span class="blob blob-1"></span>
+            <span class="blob blob-2"></span>
+            <span class="blob blob-3"></span>
+          </div>
+
+          <div class="art-text">
+            <h2>Bienvenue !</h2>
+            <p>Un espace sûr pour les élèves, enseignants, parents et institutions. Simple à utiliser — beau à regarder.</p>
+            <ul>
+              <li>Accès rapide aux ressources</li>
+              <li>Gestion des profils</li>
+              <li>Sécurité renforcée</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    // petits scripts: toggle mot de passe + vérification confirmation
+    (function () {
+      const toggle = document.querySelector('.toggle-pass');
+      const pwd = document.getElementById('password');
+      const confirm = document.getElementById('confirm');
+      const form = document.getElementById('registerForm');
+      const msg = document.getElementById('formMessage');
+
+      toggle.addEventListener('click', () => {
+        const type = pwd.type === 'password' ? 'text' : 'password';
+        pwd.type = type;
+        confirm.type = type;
+        toggle.textContent = type === 'text' ? '🙈' : '👁️';
+      });
+       //pour le suivant
+       document.getElementById("nextPageBtn").addEventListener("click", function () {
+        // Redirection vers la page suivante
+        window.location.href = "index.html"; 
+        });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        msg.textContent = '';
+        msg.className = 'form-message';
+
+        // validation simple
+        if (!form.checkValidity()) {
+          msg.textContent = 'Veuillez remplir correctement tous les champs.';
+          msg.classList.add('error');
+          return;
+        }
+
+        if (pwd.value !== confirm.value) {
+          msg.textContent = "Les mots de passe ne correspondent pas.";
+          msg.classList.add('error');
+          confirm.focus();
+          return;
+        }
+
+        // Simuler envoi
+        msg.textContent = "Inscription réussie ! (simulation)";
+        msg.classList.add('success');
+
+      });
+    })();
+  </script>
+</body>
+</html>

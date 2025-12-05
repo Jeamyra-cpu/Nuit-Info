@@ -1,31 +1,55 @@
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: rgb(242, 234, 234);
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #adc0f1, #bca4df, #f8d2ec);
+    background-attachment: fixed;
+    color: #ffffff;
 }
 
-header, footer {
-    background-color: rgb(226, 223, 223);
-    color: black;
-    text-align: center;
-    padding: 1em 0;
-}
-
+/* Conteneur central */
 .container {
-    max-width: 800px;
-    margin: 15px;
-    padding: 15px;
+    width: 80%;
+    max-width: 900px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
+
+.container h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.header, footer {
+    text-align: center;
+    padding: 15px 0;
+    font-size: 1rem;
+    background-color: #d3c1eb;
+}
+
+/* Titre principal */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
 
 .btn-primary {
-    background-color: #67798b;
+    background-color: #97689e;
     border: none;
     padding: 10px 20px;
 }
 .btn-primary:hover {
-    background-color: #2d3339;
+    background-color: #58305c;
 }
 
 .slider-container {

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic NIRD - Quiz Séquentiel</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Styles de base et personnalisation du quiz */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .nird-gradient { background-image: linear-gradient(to right, #2563eb, #10b981); }
+        .quiz-container { min-height: 400px; }
+
+        /* Styles spécifiques pour l'effet séquentiel */
+        #questionContainer {
+            min-height: 200px; /* Assure une hauteur stable pendant la transition */
+            padding: 1rem 0;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .question-hidden { opacity: 0; }
+
+        /* Style des options de réponse */
+        #questionContainer label {
+            display: block;
+            background: #f0f4ff; /* blue-50 */
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+            border-radius: 0.5rem; /* rounded-lg */
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: 1px solid transparent;
+        }
+
+        #questionContainer label:hover {
+            background: #e0e7ff; /* blue-100 */
+        }
+        
+        /* Cacher le radio par défaut et styler la sélection */
+        #questionContainer input[type="radio"] {
+            display: none;
+        }
+        
+        #questionContainer input[type="radio"]:checked + span {
+            font-weight: 600;
+            color: #1e40af; /* blue-800 */
+        }
+
+        #questionContainer input[type="radio"]:checked ~ label {
+             background: #c7d2fe; /* blue-200 */
+             border-color: #3b82f6; /* blue-500 */
+        }
+        
+        /* Couleurs pour l'analyse */
+        .success { color: #10b981; } /* teal-500 */
+        .warning { color: #f59e0b; } /* amber-500 */
+        .danger { color: #ef4444; } /* red-500 */
+        
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+
+    <!-- Header et Navigation (identique aux autres pages) -->
+    <header class="nird-gradient shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-white tracking-tight">
+                Démarche NIRD
+            </h1>
+            <nav class="space-x-4">
+                <a href="acceuil.html" class="text-white font-medium hover:text-gray-200 transition duration-150">Accueil</a>
+                <a href="quiz_famille.html" class="text-white font-medium hover:text-gray-200 transition duration-150">Les 3 Piliers</a>
+                <a href="diagnostic.html" class="text-white font-medium hover:text-gray-200 transition duration-150 py-1 px-3 bg-blue-700 rounded-full border-b-2 border-white">Faire le Diagnostic</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu Principal - Quiz -->
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white p-8 md:p-12 rounded-xl shadow-2xl quiz-container">
+            <h2 class="text-3xl font-bold text-blue-700 mb-6 border-b pb-4">
+                Évaluation de l'Équilibre Numérique de votre Enfant
+            </h2>
+
+            <!-- Formulaire du Quiz -->
+            <form id="quizForm"> 
+                <div id="questionContainer">
+                    <p class="text-lg text-gray-500">Préparation du diagnostic...</p>
+                </div>
+                
+                <!-- Bouton Séquentiel -->
+                <button type="button" id="nextButton" disabled class="mt-8 px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-lg shadow-md w-full transition duration-150">
+                    Suivant
+                </button>
+            </form>
+
+            <!-- Section Résultat (cachée au début) -->
+            <section id="resultat" class="hidden mt-8 p-6 bg-green-50 rounded-lg border-l-4 border-green-500 text-center">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">📊 Diagnostic Personnalisé</h3>
+                <p id="message" class="text-xl font-semibold"></p>
+                <p id="details" class="mt-4 text-gray-700"></p>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer Commun -->
+    <footer class="bg-gray-200 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+            <p>&copy; 2024 Démarche NIRD - Numérique Éducatif. Tous droits réservés.</p>
+            <p class="text-sm mt-2">Un projet pour l'autonomie et l'éthique technologique des équipes éducatives.</p>
+        </div>
+    </footer>
+
+<!-- Logique JavaScript pour le Quiz -->
+<script>
+    // 1. Définition des questions, options et scores
+    const quizData = [
+        {
+            id: "q1",
+            title: "1. Combien d'heures par jour votre enfant passe-t-il devant les écrans (hors temps scolaire) ?",
+            options: [
+                { text: "0–1h", value: 1 },
+                { text: "1–2h", value: 2 },
+                { text: "2–4h", value: 3 },
+                { text: "Plus de 4h", value: 4 }
+            ]
+        },
+        {
+            id: "q2",
+            title: "2. A-t-il un accès internet en autonomie totale (sans supervision ou filtre) ?",
+            options: [
+                { text: "Accès limité et surveillé", value: 1 },
+                { text: "Accès libre mais raisonnable", value: 2 },
+                { text: "Accès libre sans limite", value: 3 }
+            ]
+        },
+        {
+            id: "q3",
+            title: "3. Comment réagit-il lorsqu’on lui demande d'arrêter les écrans ?",
+            options: [
+                { text: "Il arrête facilement", value: 1 },
+                { text: "Il râle un peu mais obéit", value: 2 },
+                { text: "Il refuse ou s'énerve fortement", value: 3 }
+            ]
+        },
+        {
+            id: "q4",
+            title: "4. L'enfant utilise-t-il un écran (téléphone, tablette, console) dans l'heure qui précède le coucher ?",
+            options: [
+                { text: "Jamais / Très rarement", value: 1 },
+                { text: "De temps en temps", value: 2 },
+                { text: "Souvent ou tous les jours", value: 3 }
+            ]
+        },
+        {
+            id: "q5",
+            title: "5. Êtes-vous certain que votre enfant ne consulte pas de contenus inappropriés (violents, sensibles, etc.) ?",
+            options: [
+                { text: "Oui, nous surveillons ou les filtres sont actifs", value: 1 },
+                { text: "Nous n'avons pas vérifié, mais nous pensons que non", value: 2 },
+                { text: "Non, c'est une inquiétude ou il y a un risque", value: 3 }
+            ]
+        },
+        {
+            id: "q6",
+            title: "6. Combien d'activités sans écran (sport, lecture, jeux de société) pratique-t-il chaque jour ?",
+            options: [
+                { text: "2 heures ou plus", value: 1 },
+                { text: "1 à 2 heures", value: 2 },
+                { text: "Moins d'une heure", value: 3 }
+            ]
+        }
+    ];
+
+    let currentQuestionIndex = 0; // Index de la question en cours
+    let totalScore = 0;           // Score cumulé
+
+    const questionContainer = document.getElementById('questionContainer');
+    const nextButton = document.getElementById('nextButton');
+    const resultatSection = document.getElementById('resultat');
+
+    /**
+     * 1. Affiche la question actuelle et gère l'effet de défilement (fondu).
+     */
+    function displayQuestion() {
+        if (currentQuestionIndex >= quizData.length) {
+            // Si toutes les questions sont passées, lance l'analyse
+            analyzeResults();
+            return;
+        }
+
+        const currentQuestion = quizData[currentQuestionIndex];
+        
+        // Masque l'ancienne question (fondu sortant)
+        questionContainer.classList.add('question-hidden');
+
+        // Délai pour l'effet de disparition (500ms = durée de la transition CSS)
+        setTimeout(() => {
+            
+            let questionHTML = `<h3 class="text-xl font-semibold text-gray-900 mb-4">${currentQuestion.title}</h3>`;
+            
+            // Génère les options radio
+            currentQuestion.options.forEach(option => {
+                questionHTML += `
+                    <label tabindex="0" class="flex items-center space-x-3">
+                        <input type="radio" name="${currentQuestion.id}" value="${option.value}" class="form-radio h-5 w-5 text-blue-600" aria-labelledby="${currentQuestion.id}-${option.value}">
+                        <span id="${currentQuestion.id}-${option.value}" class="text-gray-700">${option.text}</span>
+                    </label>
+                `;
+            });
+            
+            // Injecte le nouveau contenu
+            questionContainer.innerHTML = questionHTML;
+            
+            // Affiche la nouvelle question (fondu entrant)
+            questionContainer.classList.remove('question-hidden');
+
+            // Réinitialisation du bouton et écouteur
+            nextButton.disabled = true;
+            nextButton.textContent = "Suivant";
+            if (currentQuestionIndex === quizData.length - 1) {
+                nextButton.textContent = "📌 Analyser mes réponses";
+            }
+
+            // Ajoute un écouteur au conteneur pour la sélection d'une option
+            questionContainer.addEventListener('change', checkSelection);
+
+        }, 500); 
+    }
+
+    /**
+     * 2. Vérifie si une option est sélectionnée pour activer le bouton "Suivant".
+     */
+    function checkSelection() {
+        const radioGroupName = quizData[currentQuestionIndex].id;
+        const selected = document.querySelector(`input[name="${radioGroupName}"]:checked`);
+        
+        nextButton.disabled = !selected;
+    }
+
+
+    /**
+     * 3. Gère le passage à la question suivante.
+     */
+    function nextQuestion() {
+        const currentQuestion = quizData[currentQuestionIndex];
+        const radioGroupName = currentQuestion.id;
+        const selectedInput = document.querySelector(`input[name="${radioGroupName}"]:checked`);
+        
+        // Si une réponse est sélectionnée
+        if (selectedInput) {
+            // Stocke la réponse et met à jour le score total
+            const value = Number(selectedInput.value);
+            totalScore += value;
+            
+            // Passe à la question suivante
+            currentQuestionIndex++;
+            
+            // Affiche la nouvelle question (ou les résultats)
+            displayQuestion();
+            
+        } else {
+            // Utilisation d'un modal ou d'un message d'erreur à la place d'alert()
+            // Pour cet exemple, nous allons utiliser une alerte interne au bouton/message.
+            // Utilisation d'un message temporaire dans le bouton pour éviter alert().
+            const originalText = nextButton.textContent;
+            nextButton.textContent = "⚠️ Veuillez choisir une option pour continuer.";
+            nextButton.classList.add('bg-red-500', 'hover:bg-red-600', 'animate-pulse');
+            setTimeout(() => {
+                nextButton.textContent = originalText;
+                nextButton.classList.remove('bg-red-500', 'hover:bg-red-600', 'animate-pulse');
+            }, 1500);
+        }
+    }
+
+    /**
+     * 4. Calcule et affiche le diagnostic final.
+     */
+    function analyzeResults() {
+        // Cache le formulaire
+        document.getElementById("quizForm").classList.add("hidden");
+        
+        let message = "";
+        let details = "";
+        let messageClass = "";
+        
+        // Score total maximum = 19. Minimum = 6.
+        
+        if(totalScore <= 8){
+            // Score de 6 à 8 (Faible risque)
+            message = "Félicitations ! Vous êtes déjà très proche des principes NIRD.";
+            messageClass = "success";
+            details = "Vos pratiques numériques sont très saines. Votre enfant bénéficie d'un excellent équilibre entre temps d'écran et activités sans écran. Nous vous encourageons à partager vos bonnes pratiques !";
+        }
+        else if(totalScore <= 13){
+            // Score de 9 à 13 (Risque modéré)
+            message = "Votre démarche est bonne, mais quelques ajustements pourraient améliorer l'équilibre NIRD.";
+            messageClass = "warning";
+            details = "Nous recommandons d'examiner attentivement deux piliers : le **Responsable** (sécurité des contenus) et le **Durable** (temps d'écran avant le coucher). De petites modifications peuvent avoir un grand impact sur la concentration et le sommeil de votre enfant.";
+        }
+        else{
+            // Score de 14 à 19 (Risque élevé)
+            message = "Un travail important est nécessaire pour intégrer les principes NIRD dans le quotidien numérique.";
+            messageClass = "danger";
+            details = "L'usage actuel pourrait nuire au bien-être, à la concentration et au développement social. Nous vous conseillons de revoir en urgence : 1. Les **limites claires** sur le temps total d'écran (Pilier Durable). 2. La **supervision** de l'accès à internet (Pilier Responsable).";
+        }
+
+        // Affichage des résultats
+        resultatSection.classList.remove("hidden");
+        resultatSection.className = `mt-8 p-6 rounded-lg border-l-4 text-center border-current bg-white shadow-lg ${messageClass}`;
+
+        document.getElementById("message").innerHTML = `<span class="${messageClass}">${message}</span>`;
+        document.getElementById("details").innerHTML = details;
+    }
+
+    // 5. Initialisation du quiz au chargement de la page
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Afficher la première question
+        displayQuestion(); 
+        
+        // 2. Attacher l'événement au bouton "Suivant"
+        nextButton.addEventListener('click', nextQuestion);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partage & Sensibilisation - NIRD</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="partage.css"> 
+</head>
+<body>
+
+    <header class="bg-dark text-white p-3 shadow-lg position-relative fixed-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="logo fs-4 fw-bold">NIRD - Ton Chemin de Résistant</div>
+            
+            <nav class="navbar navbar-expand-lg navbar-dark p-0">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="presentation.html"><i class="fas fa-home me-1"></i>Présentation</a></li>
+                        <li class="nav-item"><a class="nav-link" href="defis.html"><i class="fas fa-gamepad me-1"></i>Défis</a></li>
+                        <li class="nav-item"><a class="nav-link" href="action.html"><i class="fas fa-tasks me-1"></i>Actions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="impact.html"><i class="fas fa-chart-line me-1"></i>Impact</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="partage.html"><i class="fas fa-share me-1"></i>Partage</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        
+        <section class="intro text-center mb-5" data-aos="fade-down">
+            <h1 class="display-5 fw-bold text-nird-dark-blue">🌍 Partage l'Esprit de Résistance NIRD</h1>
+            <p class="lead text-muted">Aide la communauté à grandir ! Crée et diffuse facilement des supports de sensibilisation pour ton lycée, tes amis, ou ta famille.</p>
+        </section>
+
+        <section class="customization-tool mb-5 p-4 rounded-3 shadow-lg" data-aos="fade-up">
+            <h2 class="text-nird-dark-blue mb-4"><i class="fas fa-cogs me-2"></i> Générateur de Fiche Action (A4)</h2>
+            
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="action-title" class="form-label fw-bold">Titre Personnalisé de la Fiche :</label>
+                    <input type="text" id="action-title" class="form-control form-control-lg" value="Mon Défi NIRD pour une École Durable">
+                </div>
+                <div class="col-md-6">
+                    <label for="action-subtitle" class="form-label fw-bold">Ton Objectif (Ex: Éco-délégué, Club Info...) :</label>
+                    <input type="text" id="action-subtitle" class="form-control form-control-lg" value="Rejoignez le mouvement de l'établissement !">
+                </div>
+                <div class="col-12">
+                    <label for="action-message" class="form-label fw-bold">Message Clé (Max 20 mots) :</label>
+                    <textarea id="action-message" class="form-control" rows="2">Prolongeons la vie de nos ordinateurs et disons NON à l'obsolescence programmée grâce au Logiciel Libre !</textarea>
+                </div>
+            </div>
+        </section>
+
+        <section class="print-preview mb-5" data-aos="zoom-in">
+            <h2 class="text-center mb-4 text-nird-dark-blue">Aperçu du Document (Format A4)</h2>
+            
+            <div id="printable-content" class="printable-area shadow-lg">
+                <div class="print-header">
+                    <h1 id="print-title-output" class="text-nird-dark-blue">Mon Défi NIRD pour une École Durable</h1>
+                    <p id="print-subtitle-output" class="lead-print">Rejoignez le mouvement de l'établissement !</p>
+                </div>
+                
+                <div class="print-body">
+                    <div class="message-box">
+                        <i class="fas fa-bullhorn fa-3x text-nird-dark-blue mb-3"></i>
+                        <p id="print-message-output" class="message-text">Prolongeons la vie de nos ordinateurs et disons NON à l'obsolescence programmée grâce au Logiciel Libre !</p>
+                    </div>
+                    
+                    <div class="cta-box">
+                        <div class="cta-qr-code">
+                            [QR Code vers le site NIRD]
+                        </div>
+                        <p class="cta-text">Scan & Agis !</p>
+                    </div>
+                </div>
+                
+                <div class="print-footer">
+                    <p>Démarche NIRD - Numérique Inclusif, Responsable et Durable</p>
+                    <p>En savoir plus : NIRD.apps.education.fr</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <button class="print-fab btn btn-action-print rounded-circle shadow-lg" onclick="window.print()">
+        <i class="fas fa-print fa-2x"></i>
+    </button>
+
+    <footer class="text-center p-3 mt-5">
+        <p class="mb-0">&copy; 2025 NIRD - Résistance Numérique Durable</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        const titleInput = document.getElementById('action-title');
+        const subtitleInput = document.getElementById('action-subtitle');
+        const messageInput = document.getElementById('action-message');
+        
+        const titleOutput = document.getElementById('print-title-output');
+        const subtitleOutput = document.getElementById('print-subtitle-output');
+        const messageOutput = document.getElementById('print-message-output');
+
+        function updatePrintPreview() {
+            titleOutput.textContent = titleInput.value || "Titre du Défi NIRD";
+            subtitleOutput.textContent = subtitleInput.value || "L'appel à l'action";
+            messageOutput.textContent = messageInput.value || "Message de sensibilisation";
+        }
+
+        titleInput.addEventListener('input', updatePrintPreview);
+        subtitleInput.addEventListener('input', updatePrintPreview);
+        messageInput.addEventListener('input', updatePrintPreview);
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', updatePrintPreview);
+    </script>
+</body>
+</html>

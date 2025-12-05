@@ -1,0 +1,155 @@
+/* =================================================================
+   PALETTE DE COULEURS NIRD (Thème Bleu)
+   ================================================================= */
+:root {
+    --nird-dark-blue: #1e3c72;      /* Bleu foncé (Header, Accents principaux) */
+    --nird-medium-blue: #2a5298;    /* Bleu moyen (Bordures, Titres) */
+    --nird-light-blue: #e6f0fa;     /* Fond de page très clair */
+    --nird-accent-red: #dc3545;     /* Rouge (Accentuation, actif) */
+    --nird-background-white: #ffffff; /* Fond des cartes */
+}
+
+/* =================================================================
+   STYLES GÉNÉRAUX & STRUCTURE
+   ================================================================= */
+body {
+    background-color: var(--nird-light-blue);
+    color: var(--nird-text-dark);
+    font-family: 'Roboto', sans-serif;
+    padding-top: 60px; 
+}
+
+a {
+    color: var(--nird-medium-blue);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+/* =================================================================
+   HEADER (Navigation standardisée)
+   ================================================================= */
+header {
+    background-color: var(--nird-dark-blue) !important;
+    border-bottom: 3px solid var(--nird-accent-red);
+    z-index: 1030;
+}
+
+.logo {
+    color: #fff;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--nird-accent-red) !important; 
+}
+
+/* =================================================================
+   SECTION INTRO
+   ================================================================= */
+.intro {
+    padding: 20px 0;
+}
+
+.intro h1 {
+    color: var(--nird-dark-blue);
+    font-weight: 700;
+}
+
+/* =================================================================
+   SECTION VIDÉO (Bannière Thème Foncé)
+   ================================================================= */
+.video-background-section {
+    /* Fond dégradé bleu foncé, simulant un background visuel */
+    background: linear-gradient(135deg, var(--nird-dark-blue), #4a75b2);
+    border: 3px solid var(--nird-accent-red); 
+    color: #fff;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.video-background-section h2 {
+    color: #fff;
+    font-weight: 700;
+}
+
+.video-background-section .fa-laptop-house {
+    color: var(--nird-accent-red); /* Touche de rouge pour l'icône */
+}
+
+.btn-action-primary {
+    background-color: var(--nird-accent-red);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-action-primary:hover {
+    background-color: #a02834;
+    color: white;
+}
+
+/* =================================================================
+   CARTES D'ACTION (Les Rectangles Cadrés)
+   ================================================================= */
+.action-cards {
+    margin-top: 30px;
+}
+
+.action-card.card {
+    /* Style du cadre pour les actions */
+    border-radius: 12px;
+    border: 2px solid var(--nird-medium-blue) !important;
+    background-color: var(--nird-background-white) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+    min-height: 350px; /* Assurer une taille minimale */
+}
+
+.action-card.card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: var(--nird-accent-red) !important; /* Accentuation au survol */
+}
+
+.action-card .card-title {
+    color: var(--nird-dark-blue);
+    font-weight: 600;
+}
+
+.action-card .card-body {
+    padding: 1.5rem;
+}
+
+.action-details h6 {
+    color: var(--nird-medium-blue);
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.action-details ul {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 0.95rem;
+}
+
+.action-details li {
+    margin-bottom: 5px;
+}
+
+/* Couleurs des icônes d'action */
+.text-success { color: #28a745 !important; }
+.text-warning { color: #ffc107 !important; }
+.text-info { color: #17a2b8 !important; }
+
+/* =================================================================
+  
+    */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--nird-dark-blue);
+    color: #fff;
+    margin-top: 3rem;
+    width: 100%;
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Espace Élève – Village Numérique Résistant</title>
+    <link rel="stylesheet" href="styles3.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER identique à l’accueil -->
+    <header data-aos="fade-down">
+        <div class="logo">Village NIRD</div>
+        <nav>
+            <ul>
+                <li><a href="page d'accueil.html">Accueil</a></li>
+                <li><a href="eleve.html" class="active">Élève</a></li>
+                <li><a href="enseignant.html">Enseignant</a></li>
+                <li><a href="direction.html">Direction</a></li>
+                <li><a href="technicien.html">Technicien</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO adapté NIRD -->
+    <section class="hero">
+        <div class="slideshow-container">
+            <div class="slide" style="background-image: url('../exple/Image/Museum of Foumban, Cameroon.jpg');"></div>
+            <div class="slide" style="background-image: url('../exple/Image/téléchargement (3).jpg');"></div>
+            <div class="slide" style="background-image: url('../exple/Image/Cameroon.jpg');"></div>
+        </div>
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-text" data-aos="zoom-in">
+            <h1>
+                <span>Bienvenue jeune Résistant du Numérique !</span><br>
+                Découvre comment tu peux aider ton école à devenir plus libre,
+                plus durable et moins dépendante des Big Tech.
+            </h1>
+        </div>
+    </section>
+
+    <!-- SECTION 1 : Présentation dynamique NIRD -->
+    <section class="presentation-nird" data-aos="fade-up">
+
+        <h2 class="section-title">✨ Le NIRD expliqué pour toi</h2>
+
+        <p class="section-desc">
+            Le NIRD, c’est un mouvement d’élèves et d’enseignants qui veulent utiliser le numérique 
+            de manière plus intelligente : moins de gaspillage, plus de liberté, plus de coopération !
+        </p>
+
+        <div class="pillars">
+            <div class="pillar-card" data-aos="fade-right">
+                <h3>🔵 Inclusion</h3>
+                <p>Un numérique accessible à tous, sans exclusion.</p>
+            </div>
+
+            <div class="pillar-card" data-aos="fade-up">
+                <h3>🟢 Responsabilité</h3>
+                <p>Moins de dépendance aux Big Tech, plus de maîtrise locale.</p>
+            </div>
+
+            <div class="pillar-card" data-aos="fade-left">
+                <h3>🟡 Durabilité</h3>
+                <p>Réparer, réutiliser, prolonger la vie du matériel.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2 : Défis interactifs -->
+    <section class="defis-section" data-aos="fade-up">
+
+        <h2 class="section-title">🎮 Défis interactifs – Ton chemin de Résistant</h2>
+
+        <div class="features">
+
+            <!-- Quiz -->
+            <a class="feature" onclick="startQuiz()" style="background-image: url('../exple/Image/quiz.jpg');">
+                <div class="feature-content">
+                    <h1>Mini Quiz NIRD</h1>
+                    <p>Test tes connaissances sur la durabilité</p>
+                </div>
+            </a>
+
+            <!-- Drag & Drop -->
+            <a class="feature" onclick="openDragDrop()" style="background-image: url('../exple/Image/téléchargement (1).jpg');">
+                <div class="feature-content">
+                    <h1>Sobriété ou Gaspillage ?</h1>
+                    <p>Classe correctement les usages numériques</p>
+                </div>
+            </a>
+
+            <!-- Simulateur -->
+            <a class="feature" onclick="openSimulateur()" style="background-image: url('../exple/Image/repair.jpg');">
+                <div class="feature-content">
+                    <h1>Réparer ou Acheter ?</h1>
+                    <p>Choisis l'action la plus durable</p>
+                </div>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- SECTION 3 : Actions concrètes -->
+    <section class="actions-section" data-aos="fade-up">
+        <h2 class="section-title">🛠️ Comment tu peux agir aujourd’hui</h2>
+
+        <div class="actions-list">
+            <div class="action">✔ Utiliser LibreOffice pour tes devoirs</div>
+            <div class="action">✔ Économiser l’énergie sur ton smartphone</div>
+            <div class="action">✔ Installer Linux sur un ancien PC</div>
+            <div class="action">✔ Participer au club réparation de ton lycée</div>
+            <div class="action">✔ Aider un camarade à utiliser un logiciel libre</div>
+        </div>
+    </section>
+
+    <!-- SECTION 4 : Progression du Village -->
+    <section class="progression-section" data-aos="fade-up">
+
+        <h2 class="section-title">🏰 Ton impact sur le Village Résistant</h2>
+
+        <p class="section-desc">Chaque défi que tu accomplis renforce ton village NIRD.</p>
+
+        <div class="progress-bars">
+            <label>Inclusion</label>
+            <progress id="progInclusion" max="100" value="20"></progress>
+
+            <label>Responsabilité</label>
+            <progress id="progRespons" max="100" value="10"></progress>
+
+            <label>Durabilité</label>
+            <progress id="progDurabilite" max="100" value="5"></progress>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        function startQuiz(){ alert("Quiz bientôt disponible !"); }
+        function openDragDrop(){ alert("Mini-jeu Sobriété bientôt dispo !"); }
+        function openSimulateur(){ alert("Simulateur bientôt disponible !"); }

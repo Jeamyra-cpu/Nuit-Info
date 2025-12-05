@@ -1,0 +1,175 @@
+/* =================================================================
+   STYLES GÉNÉRAUX & TYPOGRAPHIE
+   ================================================================= */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e6f0fa; /* Fond très clair, tirant sur le bleu */
+    color: #0b2e6f; /* Couleur de texte bleu foncé */
+    padding-top: 60px; 
+}
+
+/* =================================================================
+   HEADER (Navigation commune, style NIRD)
+   ================================================================= */
+header {
+    /* Style sombre et accentué pour l'en-tête */
+    background-color: #212529 !important;
+    border-bottom: 3px solid #dc3545; /* Ligne d'accentuation NIRD (rouge) */
+    z-index: 1030;
+}
+
+footer {
+    background-color: #c1dcf7;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.logo {
+    color: #fff;
+}
+
+/* Liens de la Navbar */
+.navbar-nav .nav-link {
+    transition: color 0.3s;
+}
+
+/* État actif ou survolé des liens, utilise la couleur d'accentuation NIRD */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #dc3545 !important; 
+}
+
+/* =================================================================
+   PRÉSENTATION BANNER (Style Spécifique à cette page)
+   ================================================================= */
+.presentation-banner {
+    /* Fond dégradé bleu foncé */
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: #fff;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.presentation-banner h1 {
+    font-size: 2rem;
+    color: #fff;
+}
+
+/* Bouton Déconnexion */
+.logout-btn {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: #fff;
+    color: #0b2e6f;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #d1e0f0;
+}
+
+/* =================================================================
+   CONTENU PRINCIPAL
+   ================================================================= */
+.container {
+    padding: 2rem 1rem;
+    max-width: 1000px;
+    margin: auto;
+}
+
+h2 {
+    color: #1e3c72;
+    margin-top: 2.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #d1e0f0;
+    font-weight: 700;
+}
+
+p, li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+a {
+    color: #1e3c72;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #2a5298;
+}
+
+/* =================================================================
+   PILIERS NIRD
+   ================================================================= */
+.pillars {
+    margin: 2rem 0;
+}
+
+.pillar {
+    background-color: #cce0ff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    height: 100%; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s;
+}
+
+.pillar:hover {
+    background-color: #b3caff;
+}
+
+.pillar h3 {
+    color: #0b2e6f;
+    margin-top: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.pillar i {
+    color: #1e3c72;
+}
+
+
+
+/* =================================================================
+   RESPONSIVITÉ
+   ================================================================= */
+@media (max-width: 991.98px) {
+    /* S'applique lorsque le menu Bootstrap se collapse (version mobile) */
+    header {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .logo {
+        font-size: 1.2rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .presentation-banner h1 {
+        font-size: 1.5rem;
+    }
+    
+    /* Le bouton déconnexion passe en mode bloc sur mobile pour ne pas être écrasé */
+    .logout-btn {
+        position: static;
+        display: block;
+        margin: 10px auto;
+    }
+    .presentation-banner {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+}

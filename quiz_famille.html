@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIRD - Les Trois Piliers</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Utilisation de la police Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .nird-gradient { background-image: linear-gradient(to right, #2563eb, #10b981); }
+        .pillar-card { transition: all 0.3s ease; }
+        .pillar-card:hover { transform: translateY(-4px); box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.04); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+
+    <!-- Header et Navigation (identique à la page d'accueil) -->
+    <header class="nird-gradient shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-white tracking-tight">
+                Démarche NIRD
+            </h1>
+            <!-- Navigation : Ajout du lien vers le Diagnostic -->
+            <nav class="space-x-4">
+                <a href="acceuil.html" class="text-white font-medium hover:text-gray-200 transition duration-150">Accueil</a>
+                <a href="quiz_famille.html" class="text-white font-medium hover:text-gray-200 border-b-2 border-white pb-1 transition duration-150">Les 3 Piliers</a>
+                <a href="diagnostic.html" class="text-white font-medium hover:text-gray-200 transition duration-150 py-1 px-3 bg-blue-700 rounded-full">Faire le Diagnostic</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu Principal - Détails des Piliers -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-extrabold text-blue-700">Les Trois Piliers du NIRD</h2>
+            <p class="mt-3 text-xl text-gray-600">
+                Une feuille de route pour un Numérique Inclusif, Responsable et Durable à l'école.
+            </p>
+        </div>
+
+        <div class="grid gap-10 lg:grid-cols-3">
+
+            <!-- PILIER 1 : INCLUSIF -->
+            <div class="pillar-card bg-white p-8 rounded-xl shadow-lg transition duration-300 border-t-4 border-blue-500">
+                <div class="flex items-center mb-4">
+                    <div class="p-3 rounded-full bg-blue-100 text-blue-700 mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-5a2 2 0 012-2h-5a2 2 0 01-2 2v5zM9 20h5v-5a2 2 0 012-2h-5a2 2 0 01-2 2v5zM5 20h5v-5a2 2 0 012-2H5a2 2 0 01-2 2v5z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-blue-700">1. Numérique Inclusif</h3>
+                </div>
+                <p class="text-lg text-gray-600 mb-4">
+                    Garantir que le numérique ne crée pas de nouvelles fractures, mais qu'il devienne un levier d'égalité des chances pour tous les élèves.
+                </p>
+                <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                    <li>**Accessibilité Numérique** : Conformité aux normes (RGAA) pour les élèves en situation de handicap.</li>
+                    <li>**Équité Pédagogique** : Réduire la fracture numérique sociale en adaptant les usages aux besoins spécifiques de chaque apprenant.</li>
+                    <li>Accès équitable aux ressources et équipements pour tous.</li>
+                </ul>
+            </div>
+
+            <!-- PILIER 2 : RESPONSABLE -->
+            <div class="pillar-card bg-white p-8 rounded-xl shadow-lg transition duration-300 border-t-4 border-yellow-500">
+                <div class="flex items-center mb-4">
+                    <div class="p-3 rounded-full bg-yellow-100 text-yellow-700 mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.103A12.007 12.007 0 0112 20a12 12 0 01-7.794-2.887l-.005-.004A11.967 11.967 0 014.2 12a11.97 11.97 0 01-.2-2.196L12 4.04l.004-.005A12.007 12.007 0 0121 12a12.007 12.007 0 01-3.382 7.897z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-yellow-700">2. Numérique Responsable</h3>
+                </div>
+                <p class="text-lg text-gray-600 mb-4">
+                    Usage éthique, sécurisé et légal des outils numériques, plaçant la protection des données et l'éthique au premier plan.
+                </p>
+                <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                    <li>**Protection des Données (RGPD)** : Application stricte des règles de sécurité, notamment pour les données des élèves.</li>
+                    <li>**Souveraineté Technologique** : Privilégier des solutions maîtrisées, renforçant l'autonomie de l'établissement.</li>
+                    <li>**EMI** : Formation à l'esprit critique et à la citoyenneté numérique.</li>
+                </ul>
+            </div>
+
+            <!-- PILIER 3 : DURABLE -->
+            <div class="pillar-card bg-white p-8 rounded-xl shadow-lg transition duration-300 border-t-4 border-teal-500">
+                <div class="flex items-center mb-4">
+                    <div class="p-3 rounded-full bg-teal-100 text-teal-700 mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-teal-700">3. Numérique Durable</h3>
+                </div>
+                <p class="text-lg text-gray-600 mb-4">
+                    Gestion de l'impact environnemental du numérique et pérennisation du cycle de vie des équipements.
+                </p>
+                <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                    <li>**Sobriété Numérique** : Encourager des usages qui limitent la consommation d'énergie (emails légers, visio optimisées).</li>
+                    <li>**Gestion du Matériel** : Promouvoir l'économie circulaire (réparation, reconditionnement, réemploi) pour prolonger la durée de vie.</li>
+                    <li>Réduction de l'empreinte carbone globale du parc informatique de l'établissement.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="mt-12 text-center bg-gray-100 p-8 rounded-xl border border-gray-200">
+             <h3 class="text-2xl font-bold text-gray-800 mb-4">Impact Global du NIRD</h3>
+             <p class="text-lg text-gray-700 max-w-4xl mx-auto">
+                 L'adoption du NIRD permet aux établissements de passer d'une posture de simple consommateur de solutions à celle d'un **acteur souverain** de ses choix technologiques. Cela se traduit par une meilleure maîtrise des coûts, une sécurité accrue et un alignement parfait avec la mission éducative.
+             </p>
+        </div>
+    </main>
+
+    <!-- Footer Commun -->
+    <footer class="bg-gray-200 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+            <a href="acceuil.html" class="link-secondary">Retour à l'acceuil des parents</a>
+            <p class="text-sm mt-2">Un projet pour l'autonomie et l'éthique technologique des équipes éducatives.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -14,33 +14,56 @@ window.addEventListener("load", function ()
 }
 });
 
-const track = document.querySelector(".slider-track");
-const slides = track.querySelectorAll("img");
-const total = slides.length;
-
+const track = document.querySelector('.slider-track');
+const slides = Array.from(track.children);
 let index = 0;
-let isPaused = false;
+let interval;
+const delay = 10000; // 10 secondes
 
-function slide() {
-    index++;
-    track.style.transition = "transform 1s ease";
-    track.style.transform = `translateX(-${index * 100}%)`;
-
-    // Si on atteint la dernière slide (copie), on reset discrètement
-    if (index === total - 1) {
-        setTimeout(() => {
-            track.style.transition = "none";             // on coupe l’animation
-            track.style.transform = "translateX(0)";     // retour instantané
-            index = 0;                                   // reset pour la boucle
-        }, 1000); // la durée doit correspondre à la transition (1s ici)
-    }
+function showSlide(i) {
+    track.style.transform = `translateX(-${i * 100}%)`;
 }
 
-// Auto défilement 10s
-setInterval(() => {
-    if (!isPaused) slide();
-}, 10000);
+function nextSlide() {
+    index = (index + 1) % slides.length ; // boucle sans espace blanc
+    showSlide(index);
+}
 
-// Pause sur survol
-track.addEventListener("mouseenter", () => isPaused = true);
-track.addEventListener("mouseleave", () => isPaused = false);
+function startSlider() {
+    interval = setInterval(nextSlide, delay);
+}
+
+function stopSlider() {
+    clearInterval(interval);
+}
+
+// démarrage automatique
+startSlider();
+
+// pause au survol
+track.parentElement.addEventListener('mouseenter', stopSlider);
+track.parentElement.addEventListener('mouseleave', startSlider);
+
+// pause au clic maintenu
+track.parentElement.addEventListener('mousedown', stopSlider);
+track.parentElement.addEventListener('mouseup', startSlider);
+
+
+document.getElementById("inscription").addEventListener("click", function () {
+    window.location.href = "inscription.html";
+});
+
+document.getElementById("connexion").addEventListener("click", function () {
+    window.location.href = "choix.html";
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const div = document.querySelector(".video-container");
+    div.innerHTML = `
+        <video controls width="600">
+            <source src="https://www.youtube.com/watch?v=2hqJxlhnlCw" type="video/mp4">
+        </video>
+    `;
+});
+

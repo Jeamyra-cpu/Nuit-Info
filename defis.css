@@ -1,0 +1,43 @@
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; background: #f0f4f8; color: #222; }
+
+/* HEADER */
+header { display: flex; justify-content: space-between; align-items: center; background: #000; color: #fff; padding: 15px 30px; }
+header .logo { font-size: 24px; font-weight: bold; }
+nav ul { list-style: none; display: flex; }
+nav ul li { margin-left: 20px; }
+nav ul li a { color: white; text-decoration: none; font-size: 16px; }
+nav ul li a.active { color: aqua; font-weight: bold; }
+
+/* INTRO */
+.intro { text-align: center; margin: 40px 20px; }
+.intro h1 { font-size: 32px; margin-bottom: 15px; }
+.intro p { font-size: 18px; color: #555; }
+
+/* ZONES */
+.zones { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+.zone {
+    background: #00b894; color: #fff;
+    width: 200px; height: 200px;
+    border-radius: 15px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 22px; cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+.zone:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); }
+.zone span { margin-top: 10px; font-size: 16px; }
+
+/* MODAL */
+.modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); align-items:center; justify-content:center; z-index: 1000; }
+.modal-content { background:#fff; padding:30px; border-radius:12px; max-width:500px; width:90%; text-align:center; position: relative; }
+.modal-content h2 { font-size:24px; margin-bottom:15px; }
+.modal-content p { font-size:18px; margin-bottom:20px; color:#333; }
+.modal-content button { background:#00b894; color:#fff; border:none; padding:10px 20px; border-radius:8px; font-size:16px; cursor:pointer; transition: 0.3s; }
+.modal-content button:hover { background:#019e7a; }
+.close { position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer; }
+
+/* RESPONSIVE */
+@media screen and (max-width:1024px) { .zones { gap:15px; } .zone { width:180px; height:180px; font-size:20px; } }
+@media screen and (max-width:768px) { .zones { flex-direction: column; align-items: center; } .zone { width:80%; height:150px; font-size:20px; } }

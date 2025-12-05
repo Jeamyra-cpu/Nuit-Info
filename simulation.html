@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulateur d'Impact NIRD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+
+<header>
+    <h1>💰 Simulateur d'Impact & Défis</h1>
+    <p>Visualisez l'impact financier, écologique et technologique de l'approche NIRD.</p>
+</header>
+
+<main class="main-content">
+
+    <section class="section" id="section-simulateur">
+        <h2>Simuler Mon Impact : Coût vs. Durabilité</h2>
+        <p>
+            Entrez les paramètres ci-dessous pour comparer l'approche "Remplacement Standard" (Big Tech) avec l'approche "Réemploi et Logiciels Libres" (NIRD).
+        </p>
+
+        <div class="interactive-simulation">
+            <label for="nb_machines">Nombre d'ordinateurs à renouveler (ou sauver) :</label>
+            <input type="number" id="nb_machines" value="50" min="10" max="500" oninput="runSimulation()">
+            
+            <label for="cost_neuf">Coût moyen estimé d'un poste neuf (en €) :</label>
+            <input type="number" id="cost_neuf" value="1000" min="500" oninput="runSimulation()">
+            
+            <button class="btn btn-simulate" onclick="runSimulation()">Lancer l'Analyse d'Impact</button>
+
+            <div id="simulation-results" class="feedback-box">
+                <p class="initial-message">Renseignez les champs pour comparer les scénarios !</p>
+            </div>
+        </div>
+    </section>
+    
+    <hr>
+    
+    <section class="section" id="section-defi">
+        <h2>🚧 Le Grand Défi Numérique : Choisir la Résilience</h2>
+        <p>
+            **Mise en situation :** Votre collectivité doit décider du sort de 80 postes encore fonctionnels mais incompatibles avec les dernières exigences logicielles (Windows 11). Le budget du renouvellement total est de 80 000€.
+        </p>
+        
+        <h3>Votre Décision :</h3>
+        <div id="challenge-options" class="choice-group">
+            <button onclick="handleChallenge(1)" class="btn-choice ko">1. Remplacer les 80 machines par du neuf (80 000€)</button>
+            <button onclick="handleChallenge(2)" class="btn-choice ok">2. Installer Linux et reconditionner les 80 machines (Coût NIRD estimé à 8 000€)</button>
+        </div>
+        
+        <div id="challenge-feedback" class="feedback-box hidden"></div>
+
+    </section>
+
+</main>
+
+<script>
+    // --- Logique du Simulateur d'Impact ---
+    function runSimulation() {
+        const nbMachines = parseInt(document.getElementById('nb_machines').value);
+        const costNeuf = parseInt(document.getElementById('cost_neuf').value);
+        const resultsDiv = document.getElementById('simulation-results');
+
+        if (isNaN(nbMachines) || nbMachines < 10 || isNaN(costNeuf) || costNeuf < 500) {
+            resultsDiv.innerHTML = '<p class="error">Veuillez entrer des valeurs valides (min. 10 machines, min. 500€/poste neuf).</p>';
+            resultsDiv.className = 'feedback-box error';
+            return;
+        }
+
+        // Scénario 1 : Remplacement Standard (Big Tech)
+        const costStandard = nbMachines * costNeuf;
+        
+        // Scénario 2 : Approche NIRD (Réemploi/Linux)
+        // Estimation : Coût de réemploi (technicien, quelques pièces) = 10% du coût neuf
+        const costReemploiUnit = costNeuf * 0.10; 
+        const costNird = nbMachines * costReemploiUnit;
+        
+        const economies = costStandard - costNird;
+        
+        const formattedCostStandard = costStandard.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+        const formattedCostNird = costNird.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+        const formattedEconomies = economies.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
+
+        resultsDiv.className = 'feedback-box success';
+        resultsDiv.innerHTML = `
+            <h3>Analyse d'Impact pour ${nbMachines} machines :</h3>
+            <div class="result-grid">
+                <div>
+                    <h4>Scénario 1 : Remplacement Classique</h4>
+                    <p>Coût Total d'Achat : <strong>${formattedCostStandard}</strong></p>
+                    <p class="detail">Dépendance renforcée, Impact carbone élevé.</p>
+                </div>
+                <div>
+                    <h4>Scénario 2 : Approche NIRD (Réemploi/Linux)</h4>
+                    <p>Coût Total Réemploi : <strong>${formattedCostNird}</strong></p>
+                    <p class="detail">Autonomie technologique, Prolonge la vie du matériel.</p>
+                </div>
+            </div>
+            <p class="conclusion">
+                En adoptant l'approche NIRD, votre institution réalise une économie estimée de 
+                <strong>${formattedEconomies}</strong> et sauve ${nbMachines} ordinateurs de l'obsolescence.
+            </p>
+        `;
+    }
+
+    // Logique du Défi Interactif
+    function handleChallenge(choice) {
+        const feedbackBox = document.getElementById('challenge-feedback');
+        feedbackBox.classList.remove('hidden');
+
+        if (choice === 1) {
+            feedbackBox.innerHTML = `
+                <h3>❌ Impact Négatif : Dépendance et Coût Élevé</h3>
+                <p>En choisissant le remplacement, la collectivité s'endette de 80 000€, génère des déchets électroniques inutiles et s'engage sur un cycle de dépendance qui se répétera dans quelques années. **Ce n'est pas une démarche durable.**</p>
+            `;
+            feedbackBox.style.backgroundColor = '#f8d7da'; // Rouge clair
+        } else if (choice === 2) {
+            feedbackBox.innerHTML = `
+                <h3>✅ Impact Positif : Résilience et Économie</h3>
+                <p><strong>Félicitations !</strong> En investissant dans le reconditionnement sous Linux (8 000€), vous économisez 72 000€, prolongez la vie du matériel et engagez l'établissement vers l'autonomie. **C'est le principe du NIRD.**</p>
+            `;
+            feedbackBox.style.backgroundColor = '#d4edda'; // Vert clair
+        }
+        
+        // Afficher clairement le feedback
+        feedbackBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Lancer la simulation au chargement
+    document.addEventListener('DOMContentLoaded', runSimulation); 
+</script>
+</body>
+<footer>
+    <a href="institutions.html" class="link-secondary">Retour à l'Espace Institutions</a>
+    <p class="mt-3">&copy; 2025 Le Village Numérique Libre et Durable. Tous droits réservés.</p>
+</footer>
+</html>
